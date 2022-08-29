@@ -26,15 +26,14 @@ public class HomeworkEleven {
     }
     public static String numToSortedString(String[] numbers) {
 
-        String strWithNums = String.join(", ", numbers);
+       List<String> intArrays = Arrays.stream(numbers)
+               .map(n -> n.split(", "))
+               .flatMap(Arrays::stream)
+               .sorted()
+               .toList();
 
-        int[] intArrays= Stream.of(strWithNums.split(", "))
-                .mapToInt(Integer::parseInt)
-                .sorted()
-                .toArray()
-                ;
+        return intArrays.toString().replace("[", "").replace("]", "");
 
-        return Arrays.toString(intArrays).replace("[", "").replace("]", "");
     }
     public static Stream<Long> randomNumsGenerator(long a, long c, long m) {
 
